@@ -16,12 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
       - uses: actions/checkout@v2
 
-      - run: yarn install
+      - run: npm install
 
-      - run: yarn build
+      - run: npm run build
         env:
           NODE_ENV: production
           VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
