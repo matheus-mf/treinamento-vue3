@@ -38,11 +38,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Run build
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn build
         env:
           NODE_ENV: production
@@ -50,7 +48,6 @@ jobs:
 
 
       - name: Run project locally
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
           yarn add serve
           $(yarn bin)/serve dist -s -p 8080 &
