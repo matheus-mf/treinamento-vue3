@@ -12,13 +12,13 @@ describe('Credentials', () => {
     cy.get('#password-field').type('1234')
     cy.get('#submit-button').click()
 
-    cy.wait(4000)
+    cy.wait(4500)
     cy.visit(`${APP_URL}/credentials`)
-    cy.wait(2000)
+    cy.wait(4000)
 
     const oldApiKey = cy.get('#apikey').invoke('text')
     cy.get('#generate-apikey')
-    cy.wait(2000)
+    cy.wait(4000)
     const newApiKey = cy.get('#apikey').invoke('text')
 
     expect(oldApiKey).to.not.equal(newApiKey)
