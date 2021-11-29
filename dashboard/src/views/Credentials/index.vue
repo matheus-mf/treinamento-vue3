@@ -112,8 +112,6 @@ export default {
         state.isLoading = true
         const { data } = await services.auth.generateApiKey()
 
-        console.log(data)
-
         setApiKey(data.apiKey)
       } catch (error) {
         handleError(error)
