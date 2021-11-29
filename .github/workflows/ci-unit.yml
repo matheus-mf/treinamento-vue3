@@ -42,4 +42,4 @@ jobs:
 
       - name: Run tests
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn test:unit --if-present
+        run: yarn test:unit
