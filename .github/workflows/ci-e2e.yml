@@ -28,7 +28,6 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
-          VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
 
       - name: Run project locally
         run: |
