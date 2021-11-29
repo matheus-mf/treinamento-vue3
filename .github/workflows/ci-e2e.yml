@@ -42,12 +42,15 @@ jobs:
         run: yarn
 
       - name: Run build
-        run: |
-          NODE_ENV=production
-          VUE_APP_API_BASE_URL=https://feedbacker-api.matheusmf.dev
-          yarn build
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn build
+        env:
+          NODE_ENV: production
+          VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
+
 
       - name: Run project locally
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
           yarn add serve
           $(yarn bin)/serve dist -s -p 8080 &
