@@ -23,17 +23,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: npm install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
 
-      - run: npm run build
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
         env:
           NODE_ENV: production
           VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
 
       - name: Run project locally
         run: |
-          npm install serve
-          $(npm bin)/serve dist -s -p 8080 &
+          yarn add serve
+          $(yarn bin)/serve dist -s -p 8080 &
 
       - name: Run tests
         uses: cypress-io/github-action@v2
