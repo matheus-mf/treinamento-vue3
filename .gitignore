@@ -1,2 +1,6 @@
 **/.idea
 **/node_modules
+/conceitos/lifecycle-hooks/.idea/
+/conceitos/lifecycle-hooks/node_modules/
+/conceitos/nova-syntax-e-antiga/.idea/
+/conceitos/nova-syntax-e-antiga/node_modules/
