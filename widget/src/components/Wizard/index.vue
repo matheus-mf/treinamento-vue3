@@ -12,6 +12,7 @@ import { defineComponent } from 'vue'
 import SelectFeedbackType from './SelectFeedbackType.vue'
 import WriteAFeedback from './WriteAFeedback.vue'
 import Success from './Success.vue'
+import ErrorState from './Error.vue'
 
 import useStore from '@/hooks/store'
 import { INavigation, useNavigation } from '@/hooks/navigation'
@@ -24,7 +25,7 @@ interface ISetupReturn {
 }
 
 export default defineComponent({
-  components: { SelectFeedbackType, WriteAFeedback, Success },
+  components: { SelectFeedbackType, WriteAFeedback, Success, Error: ErrorState },
   setup ():ISetupReturn {
     const store = useStore()
     const { next } = useNavigation()

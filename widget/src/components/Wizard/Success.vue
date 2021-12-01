@@ -5,7 +5,7 @@
       :color="palette.success"
       size="70" />
 
-    <p class="text-xl font-back text-conter w-full mt-2">
+    <p class="text-xl font-black text-center w-full mt-2">
       Obrigado! Recebemos o seu feedback.
     </p>
     <div class="flex justify-center items-center w-full mt-2">
