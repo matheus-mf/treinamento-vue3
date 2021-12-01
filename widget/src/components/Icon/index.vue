@@ -4,20 +4,24 @@
 
 <script>
 import ArrowRight from './ArrowRight'
-import Loading from './Loading'
-import Copy from './Copy'
+import Atention from './Atention'
 import Chat from './Chat'
-import Close from './Close'
+import Check from './Check'
 import ChevronDown from './ChevronDown'
+import Close from './Close'
+import Copy from './Copy'
+import Loading from './Loading'
 
 export default {
   components: {
     ArrowRight,
-    Loading,
-    Copy,
+    Atention,
     Chat,
+    Check,
+    ChevronDown,
     Close,
-    ChevronDown
+    Copy,
+    Loading
   },
   props: {
     name: {
