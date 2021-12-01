@@ -1,4 +1,4 @@
-name: E2e testing
+name: Widget unit testing
 
 on:
   workflow_dispatch:
@@ -7,14 +7,13 @@ on:
   pull_request:
     branches: [ $default-branch ]
 
-jobs:
-  cypress:
-    defaults:
-      run:
-        working-directory: dashboard
+defaults:
+  run:
+    working-directory: widget
 
+jobs:
+  jest:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     strategy:
       matrix:
@@ -40,21 +39,5 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Run build
-        run: yarn build
-        env:
-          NODE_ENV: production
-          VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
-
-
-      - name: Run project locally
-        run: |
-          yarn add serve
-          $(yarn bin)/serve dist -s -p 8080 &
-
       - name: Run tests
-        uses: cypress-io/github-action@v2
-        with:
-          working-directory: dashboard
-          browser: chrome
-          headless: true
+        run: yarn test:unit

@@ -1,0 +1,60 @@
+name: Dashboard e2e testing
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  cypress:
+    defaults:
+      run:
+        working-directory: dashboard
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            ./js-build/node_modules/
+          key: ${{ runner.os }}-yarn-${{ hashFiles('./js-build/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Run build
+        run: yarn build
+        env:
+          NODE_ENV: production
+          VUE_APP_API_BASE_URL: https://feedbacker-api.matheusmf.dev
+
+
+      - name: Run project locally
+        run: |
+          yarn add serve
+          $(yarn bin)/serve dist -s -p 8080 &
+
+      - name: Run tests
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: dashboard
+          browser: chrome
+          headless: true
