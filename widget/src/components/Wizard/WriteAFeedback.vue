@@ -1,9 +1,9 @@
 <template>
-  <article class="flex flex-col items-center justify-center w-full my-5">
+  <div class="felx flex-col items-center justify-center w-full my-5">
     <textarea
       v-model="state.feedback"
-      class="w-full rounded-lg border-2 border-gray-300 border-solid h-24 p-2 resize-none focus:outline-none"
-    />
+      class="w-full rounded-lg border-2 border-gray-300 border-solid h-24 p-2 resize-none focus:outline-none">
+    </textarea>
     <button
       :disabled="submitButtonIsDisabled"
       :class="{
@@ -22,37 +22,37 @@
         Enviar feedback
       </template>
     </button>
-  </article>
+  </div>
 </template>
 
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, reactive } from 'vue'
+import { ComputedRef, computed, defineComponent, reactive } from 'vue'
 
-import services from '@/services'
-import useStore from '@/hooks/store'
+import { setMessage } from '@/store'
 import { useNavigation } from '@/hooks/navigation'
+import useStore from '@/hooks/store'
+import services from '@/services'
 
-import Icon from '@/components/Icon/index.vue'
+import Icon from '../Icon/index.vue'
 
-type TState = {
-  feedback: string
-  isLoading: boolean
-  hasError: Error | null
+type State = {
+  feedback: string;
+  isLoading: boolean;
+  hasError: Error | null;
 }
 
-interface ISetupReturn {
-  state: TState
-  submitButtonIsDisabled: ComputedRef<boolean>
-  submitAFeedback(): Promise<void>
+interface SetupReturn {
+  state: State;
+  submitAFeedback(): Promise<void>;
+  submitButtonIsDisabled: ComputedRef<boolean>;
 }
 
 export default defineComponent({
   components: { Icon },
-  setup ():ISetupReturn {
+  setup (): SetupReturn {
     const store = useStore()
-    const { setErrorState, setSuccessState } = useNavigation()
-
-    const state = reactive<TState>({
+    const { setSuccessState, setErrorState } = useNavigation()
+    const state = reactive<State>({
       feedback: '',
       isLoading: false,
       hasError: null
@@ -68,8 +68,11 @@ export default defineComponent({
     }
 
     async function submitAFeedback (): Promise<void> {
+      setMessage(state.feedback)
+      state.isLoading = true
+
       try {
-        const response = await services.feedback.create({
+        const response = await services.feedbacks.create({
           type: store.feedbackType,
           text: store.message,
           page: store.currentPage,
@@ -83,8 +86,8 @@ export default defineComponent({
         } else {
           setErrorState()
         }
-      } catch (error: Error) {
-        handleError(Error)
+      } catch (error) {
+        handleError(error)
       } finally {
         state.isLoading = false
       }
@@ -92,8 +95,8 @@ export default defineComponent({
 
     return {
       state,
-      submitButtonIsDisabled,
-      submitAFeedback
+      submitAFeedback,
+      submitButtonIsDisabled
     }
   }
 })

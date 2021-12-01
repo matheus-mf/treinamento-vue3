@@ -30,7 +30,7 @@ export default defineComponent({
     const store = useStore()
     const { next } = useNavigation()
 
-    function handleSelectFeedbackType (type: string) {
+    function handleSelectFeedbackType (type: TStoreState['feedbackType']) {
       setFeedbackType(type)
     }
 
