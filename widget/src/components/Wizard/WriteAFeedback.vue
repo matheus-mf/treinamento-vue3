@@ -30,7 +30,7 @@ import { ComputedRef, computed, defineComponent, reactive } from 'vue'
 
 import { setMessage } from '@/store'
 import { useNavigation } from '@/hooks/navigation'
-import { useStore }  from '@/hooks/store'
+import { useStore } from '@/hooks/store'
 import services from '@/services'
 
 import Icon from '../Icon/index.vue'

@@ -14,7 +14,7 @@ import WriteAFeedback from './WriteAFeedback.vue'
 import Success from './Success.vue'
 import ErrorState from './Error.vue'
 
-import { useStore }  from '@/hooks/store'
+import { useStore } from '@/hooks/store'
 import { INavigation, useNavigation } from '@/hooks/navigation'
 import { setFeedbackType, TStoreState } from '@/store'
 
