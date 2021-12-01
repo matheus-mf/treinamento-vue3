@@ -9,11 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from 'vue'
+import { defineComponent, reactive, watch } from 'vue'
 
 import Standby from './Standby.vue'
 import Box from './Box.vue'
 import { useIframeControl } from '@/hooks/iframeControl'
+import { useStore } from '@/hooks/store'
 
 type TState = {
   component: string
@@ -28,12 +29,13 @@ interface ISetupReturn {
 export default defineComponent({
   components: { Standby, Box },
   setup ():ISetupReturn {
+    const store = useStore()
     const state = reactive<TState>({
       component: 'Standby'
     })
     const { notifyOpen, notifyClose, updateCoreValuesOnStore } = useIframeControl()
 
-    onMounted(() => {
+    watch(() => store.currentComponent, () => {
       updateCoreValuesOnStore()
     })
 

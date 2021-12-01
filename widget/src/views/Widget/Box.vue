@@ -46,7 +46,7 @@
 import { defineComponent, computed, ComputedRef, SetupContext } from 'vue'
 import colors from 'tailwindcss/colors'
 
-import useStore from '@/hooks/store'
+import { useStore } from '@/hooks/store'
 import { INavigation, useNavigation } from '@/hooks/navigation'
 import Icon from '@/components/Icon/index.vue'
 import Wizard from '@/components/Wizard/index.vue'

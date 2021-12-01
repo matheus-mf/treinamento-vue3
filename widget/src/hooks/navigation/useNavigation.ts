@@ -1,5 +1,5 @@
 import { setCurrentComponent, setFeedbackType } from '@/store'
-import useStore from '../store'
+import { useStore } from '../store'
 import { INavigation } from './types'
 
 export function useNavigation (): INavigation {

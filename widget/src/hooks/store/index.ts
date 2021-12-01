@@ -1,5 +1,5 @@
 import Store, { TStoreState } from '../../store'
 
-export default function useStore ():TStoreState {
+export function useStore ():TStoreState {
   return Store
 }
