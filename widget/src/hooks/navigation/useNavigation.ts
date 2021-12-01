@@ -18,8 +18,18 @@ export function useNavigation (): INavigation {
     }
   }
 
+  function setErrorState (): void {
+    setCurrentComponent('Error')
+  }
+
+  function setSuccessState (): void {
+    setCurrentComponent('Success')
+  }
+
   return {
     next,
-    back
+    back,
+    setErrorState,
+    setSuccessState
   }
 }
