@@ -2,19 +2,21 @@
   <component :is="name" v-bind="$props" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
+<script>
+import ArrowRight from './ArrowRight'
 import Loading from './Loading'
 import Copy from './Copy'
 import Chat from './Chat'
+import Close from './Close'
 import ChevronDown from './ChevronDown'
 
-export default defineComponent({
+export default {
   components: {
+    ArrowRight,
     Loading,
     Copy,
     Chat,
+    Close,
     ChevronDown
   },
   props: {
@@ -22,5 +24,5 @@ export default defineComponent({
       type: String, required: true
     }
   }
-})
+}
 </script>

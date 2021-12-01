@@ -1,9 +1,9 @@
 import { reactive, readonly } from 'vue'
 
 export type TStoreState = {
-  currentComponent: string
+  currentComponent: 'SelectFeedbackType' | 'WriteAFeedback' | 'Success' | 'Error'
   message: string
-  feedbackType: string
+  feedbackType: '' | 'ISSUE' | 'IDEA' | 'OTHER'
   fingerprint: string
   apiKey: string
   currentPage: string
@@ -20,7 +20,7 @@ const initialState:TStoreState = {
 
 const state = reactive<TStoreState>({ ...initialState })
 
-export function setCurrentComponent (component: string): void {
+export function setCurrentComponent (component: TStoreState['currentComponent']): void {
   state.currentComponent = component
 }
 
@@ -28,7 +28,7 @@ export function setMessage (message: string): void {
   state.message = message
 }
 
-export function setFeedbackType (feedbackType: string): void {
+export function setFeedbackType (feedbackType: TStoreState['feedbackType']): void {
   state.feedbackType = feedbackType
 }
 

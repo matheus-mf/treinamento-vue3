@@ -11,13 +11,11 @@
   </svg>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
+<script>
+export default {
   props: {
     size: { type: [String, Number], default: 22 },
     color: { type: String, default: 'white' }
   }
-})
+}
 </script>

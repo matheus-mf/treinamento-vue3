@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <component
-      @opne-box="handleOpenBox"
+      @open-box="handleOpenBox"
       @close-box="handleCloseBox"
       :is="state.component"
     />
